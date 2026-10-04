@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Device link{% endblock %}
+{% block body %}
+<section class="narrow">
+  <h1>Device link</h1>
+  <p class="lede">Open this link on the other browser within {{ ttl }} minutes. It works once, then stops.</p>
+  <p class="help"><a href="{{ link }}">{{ link }}</a></p>
+  <p><a href="{{ url_for('mine') }}">Back to My bookings</a></p>
+</section>
+{% endblock %}

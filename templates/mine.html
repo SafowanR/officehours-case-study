@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}My bookings{% endblock %}
+{% block body %}
+<section class="narrow wide">
+  <h1>My bookings</h1>
+  <p class="lede">Open a booking to read any note the TA left you. Need the same list on another computer? Use the device link at the bottom.</p>
+  {% if not bookings %}
+    <p class="lede">Nothing held yet. <a href="{{ url_for('home') }}">Grab a slot</a>.</p>
+  {% else %}
+    <ul class="list">
+      {% for booking in bookings %}
+        <li>
+          <a href="{{ url_for('booking_detail', booking_id=booking.id) }}">
+            <strong>{{ booking.starts_at }}</strong>
+            <span>{{ booking.topic }} · {{ booking.ta_name }}</span>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  <form class="inline" method="post" action="{{ url_for('create_handoff') }}">
+    <button type="submit">Create a device link</button>
+  </form>
+</section>
+{% endblock %}
